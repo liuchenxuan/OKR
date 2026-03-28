@@ -1,0 +1,78 @@
+{
+  "name": "okr-visual-system",
+  "productName": "OKR可视化系统",
+  "private": true,
+  "version": "1.0.0",
+  "description": "OKR目标与关键结果可视化管理系统",
+  "main": "electron/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron:dev": "vite build && electron .",
+    "electron:build": "vite build && electron-builder --win --x64",
+    "electron:build:dir": "vite build && electron-builder --win --x64 --dir"
+  },
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "clsx": "2.1.1",
+    "date-fns": "^4.1.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-is": "^19.2.4",
+    "recharts": "^3.8.0",
+    "tailwind-merge": "3.4.0",
+    "uuid": "^13.0.0",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.1.17",
+    "@types/node": "^22.0.0",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.1",
+    "electron": "^41.1.0",
+    "electron-builder": "^26.8.1",
+    "tailwindcss": "4.1.17",
+    "typescript": "5.9.3",
+    "vite": "7.2.4",
+    "vite-plugin-singlefile": "2.3.0"
+  },
+  "build": {
+    "appId": "com.okr.visual-system",
+    "productName": "OKR可视化系统",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "installerIcon": null,
+      "uninstallerIcon": null,
+      "installerHeaderIcon": null
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-portable.${ext}"
+    }
+  }
+}
